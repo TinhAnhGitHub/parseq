@@ -61,7 +61,7 @@ def main(config: DictConfig):
         devices = config.trainer.get('devices', 0)
         if gpu:
            
-            config.trainer.precision = 'bf16' if torch.get_autocast_dtype('cuda') is torch.bfloat16 else '16'
+            config.trainer.precision = '16'
         if gpu and devices > 1:
             # Use DDP with optimizations
             trainer_strategy = DDPStrategy(find_unused_parameters=False, gradient_as_bucket_view=True)

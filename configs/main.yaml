@@ -39,7 +39,7 @@ trainer:
   gradient_clip_val: 20
   accelerator: gpu
   devices: 2
-  
+  precision: 16
 
 
 ckpt_path: null
