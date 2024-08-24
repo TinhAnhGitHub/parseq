@@ -18,8 +18,8 @@ model:
 
 data:
   _target_: strhub.data.module.SceneTextDataModule
-  root_dir: data
-  train_dir: ???
+  root_dir: /data/train
+  train_dir: ${data.root_dir}/vietnamese
   batch_size: ${model.batch_size}
   img_size: ${model.img_size}
   charset_train: ${model.charset_train}
@@ -37,7 +37,9 @@ trainer:
   #max_steps: 169680  # 20 epochs x 8484 steps (for batch size = 384, real data)
   max_epochs: 100
   gradient_clip_val: 20
-  gpus: 2 # 4
+  accelerator: gpu
+  devices: 2
+
 
 ckpt_path: null
 pretrained: null
