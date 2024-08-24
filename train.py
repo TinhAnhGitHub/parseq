@@ -60,8 +60,8 @@ def main(config: DictConfig):
         gpu = config.trainer.get('accelerator') == 'gpu'
         devices = config.trainer.get('devices', 0)
         if gpu:
-            # Use mixed-precision training
-            config.trainer.precision = 'bf16-mixed' if torch.get_autocast_gpu_dtype() is torch.bfloat16 else '16-mixed'
+           
+            config.trainer.precision = 'bf16' if torch.get_autocast_dtype('cuda') is torch.bfloat16 else '16'
         if gpu and devices > 1:
             # Use DDP with optimizations
             trainer_strategy = DDPStrategy(find_unused_parameters=False, gradient_as_bucket_view=True)
